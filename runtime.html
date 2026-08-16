@@ -19,7 +19,7 @@
 </option>
   </select>
 <br>
-<textarea id="program" autofocus cols="40" rows="6"></textarea><br>
+<textarea id="program" cols="40" rows="6"></textarea><br>
 
 Input <label id="stdinlabel" style="display: none;" title="With raw mode and a single input it is ambiguous whether that input simulates stdin (type [char]) or one command line arg (type [[char]])"><input type="checkbox" id="stdinbox"></input>as stdin</label> <button title="You can also use newlines for additional inputs, but this button is so that you can have even higher ranked inputs as you could from command line args" id="addButton" style="float: right;">Add Input</button><br>
 
@@ -205,14 +205,14 @@ document.getElementById('example-selector').addEventListener('change', function(
 </script>
 
 <!-- https://github.com/magjac/d3-graphviz?tab=readme-ov-file
-     self-hosted (vendored from d3@7.9.0, @hpcc-js/wasm@2.20.0, d3-graphviz@5.6.0).
+     pinned from d3@7.9.0, @hpcc-js/wasm@2.20.0, d3-graphviz@5.6.0.
      graphviz wasm is base91-embedded in graphviz.umd.js, so no separate .wasm is needed. -->
 <script src="https://d3js.org/d3.v7.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@hpcc-js/wasm@2.20.0/dist/graphviz.umd.js" integrity="sha384-MuWg2iUw8i0NVYbS/E8m9g6C3mtfMFok9RDhu1F8MA7odUrz5J9AQktZ9IUERhKM" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/d3-graphviz@5.6.0/build/d3-graphviz.js" integrity="sha384-Oq7yaIx9v1EBL0o2ExmWc1LX7v4qsyulAZ38Pw/PBLKK0xavsLFTAf1zviZXOPBC" crossorigin="anonymous"></script>
 <!--  -->
 
-<!-- self-hosted ruby.wasm loader (vendored from @ruby/wasm-wasi@2.9.3-2.9.4) -->
+<!-- pinned ruby.wasm loader from @ruby/wasm-wasi@2.9.3-2.9.4 -->
 <script src="https://cdn.jsdelivr.net/npm/@ruby/wasm-wasi@2.9.3-2.9.4/dist/browser.umd.js" integrity="sha384-4Li0VYZExvs+cKw32YxmlL5fpfBSdSRsPeOaAZcxegFw7vqo6bmlynBrHQm+t7rr" crossorigin="anonymous"></script>
 
 <script>
