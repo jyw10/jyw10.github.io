@@ -2,6 +2,8 @@
 
 The source for [jyw10.github.io](https://jyw10.github.io), a lightweight personal blog built with Jekyll and hosted on GitHub Pages.
 
+The starter includes a responsive editorial layout, light and dark themes, an archive, an about page, RSS and sitemap feeds, SEO metadata, and an accessible 404 page.
+
 ## Publish a post
 
 1. Create `_posts/YYYY-MM-DD-your-title.md`.
@@ -38,4 +40,3 @@ bundle exec jekyll serve
 ```
 
 Open <http://localhost:4000>.
-
