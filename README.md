@@ -30,6 +30,7 @@ GitHub Pages rebuilds the site after every commit.
 - Site title and description: `_config.yml`
 - Home page introduction: `index.html`
 - Biography: `about.md`
+- RSS subscription guide: `rss.md`
 - Colors and typography: `assets/css/style.css`
 
 ## Preview locally
