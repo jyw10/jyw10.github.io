@@ -4,6 +4,8 @@ The source for [jyw10.github.io](https://jyw10.github.io), a lightweight persona
 
 The starter includes a responsive editorial layout, light and dark themes, an archive, an about page, RSS and sitemap feeds, SEO metadata, and an accessible 404 page.
 
+Human visitors can learn how to subscribe at `/rss/`; feed readers use `/feed.xml` directly.
+
 ## Publish a post
 
 1. Create `_posts/YYYY-MM-DD-your-title.md`.
