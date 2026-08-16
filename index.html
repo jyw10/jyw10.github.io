@@ -1,58 +1,129 @@
----
-layout: default
-title: Home
-description: "Notes on building, learning, and the ideas in between."
----
-<section class="hero shell">
-  <div class="hero-copy">
-    <p class="eyebrow">Independent notes · Est. 2026</p>
-    <h1>Ideas become clearer when you <em>write them down.</em></h1>
-    <p class="hero-intro">A small corner of the internet for field notes on building, learning, and whatever proves worth remembering.</p>
-    <div class="hero-actions">
-      <a class="button button-primary" href="#latest">Read the latest</a>
-      <a class="button button-quiet" href="https://github.com/jyw10">GitHub ↗</a>
-    </div>
-  </div>
-  <div class="hero-card" aria-label="Site note">
-    <span class="card-index">01</span>
-    <blockquote>Writing is where fuzzy ideas begin to acquire edges.</blockquote>
-    <p>Welcome. Stay curious.</p>
-  </div>
-</section>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11120f">
+  <meta name="description" content="A browser-based practice judge for the iogii programming language.">
+  <title>iogii arena — browser-based online judge</title>
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Skip to workspace</a>
 
-<section class="latest shell" id="latest">
-  <div class="section-heading">
-    <div>
-      <p class="eyebrow">Recently published</p>
-      <h2>Latest writing</h2>
-    </div>
-    <a href="{{ '/archive/' | relative_url }}">View the archive →</a>
-  </div>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="iogii arena home">
+      <span class="brand-mark" aria-hidden="true">i</span>
+      <span>
+        <strong>iogii arena</strong>
+        <small>browser judge</small>
+      </span>
+    </a>
 
-  <div class="post-list">
-    {% for post in site.posts limit:6 %}
-      <article class="post-card">
-        <div class="post-card-meta">
-          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
-          {% if post.categories.first %}<span>{{ post.categories.first }}</span>{% endif %}
+    <div class="runtime-chip" id="runtime-chip" data-state="loading" aria-live="polite">
+      <span class="runtime-dot" aria-hidden="true"></span>
+      <span id="runtime-label">Loading iogii 1.2.1</span>
+    </div>
+
+    <nav class="header-links" aria-label="Reference links">
+      <a href="https://golfscript.com/iogii/docs.html" target="_blank" rel="noreferrer">Docs</a>
+      <a href="https://golfscript.com/iogii/quickref.html" target="_blank" rel="noreferrer">Quick ref ↗</a>
+    </nav>
+  </header>
+
+  <main class="app-shell" id="workspace">
+    <aside class="problem-nav" aria-label="Problem set">
+      <div class="nav-heading">
+        <div>
+          <span class="eyebrow">Practice set</span>
+          <h1>Challenges</h1>
         </div>
-        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-        <p>{{ post.description | default: post.excerpt | strip_html | truncate: 180 }}</p>
-        <a class="read-link" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title }}">Read essay <span>→</span></a>
-      </article>
-    {% else %}
-      <div class="empty-state">
-        <p>Your first post is waiting to be written.</p>
+        <span class="progress-count" id="progress-count">0/5</span>
       </div>
-    {% endfor %}
-  </div>
-</section>
 
-<section class="newsletter shell" aria-labelledby="follow-title">
-  <div>
-    <p class="eyebrow">Follow along</p>
-    <h2 id="follow-title">New notes, without the noise.</h2>
-  </div>
-  <p>Subscribe with your favorite feed reader and every new post will arrive automatically.</p>
-  <a class="button button-inverse" href="{{ '/rss/' | relative_url }}">Open RSS feed</a>
-</section>
+      <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+      <div class="problem-list" id="problem-list"></div>
+
+      <div class="local-note">
+        <span aria-hidden="true">⌁</span>
+        <p><strong>Runs on your device.</strong> Code and progress stay in this browser.</p>
+      </div>
+    </aside>
+
+    <section class="challenge-pane" aria-live="polite">
+      <div class="challenge-meta">
+        <span class="problem-number" id="problem-number">01</span>
+        <span class="difficulty" id="difficulty">Warm-up</span>
+        <span class="points" id="points">100 pts</span>
+      </div>
+
+      <h2 id="problem-title">Hello, iogii!</h2>
+      <p class="problem-lede" id="problem-lede"></p>
+      <div class="problem-copy" id="problem-copy"></div>
+
+      <div class="sample-grid" aria-label="Sample input and output">
+        <div class="sample-card">
+          <div class="sample-label">Sample input</div>
+          <pre id="sample-input"></pre>
+        </div>
+        <div class="sample-card">
+          <div class="sample-label">Expected output</div>
+          <pre id="sample-output"></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="editor-pane" aria-label="Code workspace">
+      <div class="editor-toolbar">
+        <div class="file-tab"><span class="file-dot" aria-hidden="true"></span>solution.iog</div>
+        <div class="editor-tools">
+          <span id="byte-count">0 bytes</span>
+          <button class="text-button" id="reset-button" type="button">Reset</button>
+        </div>
+      </div>
+
+      <div class="editor-wrap">
+        <label class="sr-only" for="code-editor">Iogii solution</label>
+        <textarea id="code-editor" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+      </div>
+
+      <div class="console-panel">
+        <div class="console-tabs" role="tablist" aria-label="Console views">
+          <button class="console-tab is-active" id="input-tab" type="button" role="tab" aria-selected="true">Custom input</button>
+          <button class="console-tab" id="output-tab" type="button" role="tab" aria-selected="false">Output</button>
+          <button class="console-tab" id="results-tab" type="button" role="tab" aria-selected="false">Judge results</button>
+        </div>
+
+        <div class="console-view" id="input-view" role="tabpanel">
+          <label class="sr-only" for="custom-input">Custom input</label>
+          <textarea id="custom-input" spellcheck="false" placeholder="Input is auto-parsed by iogii…"></textarea>
+        </div>
+        <div class="console-view" id="output-view" role="tabpanel" hidden>
+          <pre id="custom-output" tabindex="0">Run your solution to see output.</pre>
+        </div>
+        <div class="console-view" id="results-view" role="tabpanel" hidden>
+          <div id="judge-results" class="judge-results"><p>No submission yet.</p></div>
+        </div>
+      </div>
+
+      <div class="action-bar">
+        <span class="shortcut-hint"><kbd>Ctrl</kbd><span>+</span><kbd>Enter</kbd> to submit</span>
+        <div class="action-buttons">
+          <button class="secondary-button" id="run-button" type="button"><span aria-hidden="true">▶</span> Run custom</button>
+          <button class="primary-button" id="submit-button" type="button">Submit solution <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Practice judge by <a href="https://github.com/jyw10">jyw10</a>. Powered by the BSD-licensed <a href="https://golfscript.com/iogii/" target="_blank" rel="noreferrer">iogii 1.2.1</a> interpreter by Darren Smith.</p>
+    <p>Client-side judge · Tests are educational, not tamper-proof · <a href="THIRD_PARTY_NOTICES.md">Notices</a></p>
+  </footer>
+
+  <iframe id="iogii-runtime" src="runtime.html" title="Iogii WebAssembly runtime" tabindex="-1" aria-hidden="true"></iframe>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>

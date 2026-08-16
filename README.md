@@ -1,45 +1,31 @@
-# jyw10.github.io
+# iogii arena
 
-The source for [jyw10.github.io](https://jyw10.github.io), a lightweight personal blog built with Jekyll and hosted on GitHub Pages.
+A browser-only practice judge for the [iogii programming language](https://golfscript.com/iogii/), hosted on GitHub Pages.
 
-The starter includes a responsive editorial layout, light and dark themes, an archive, an about page, RSS and sitemap feeds, SEO metadata, and an accessible 404 page.
+## Features
 
-Human visitors can learn how to subscribe at `/rss/`; feed readers use `/feed.xml` directly.
+- Official iogii 1.2.1 Ruby/WebAssembly interpreter
+- Five built-in practice problems
+- Custom input runner and multi-case judging
+- Per-problem solution and progress persistence in `localStorage`
+- Responsive, accessible interface with no backend
 
-## Publish a post
+## Architecture
 
-1. Create `_posts/YYYY-MM-DD-your-title.md`.
-2. Add front matter:
+`index.html` contains the judge interface. `runtime.html` is the official iogii browser interpreter, isolated in a same-origin iframe. The judge writes programs and inputs into that runtime and reads the resulting output. Third-party browser assets use immutable, version-pinned CDN URLs with integrity verification.
 
-   ```yaml
-   ---
-   title: "Your post title"
-   description: "A one-sentence summary."
-   date: 2026-08-16 09:00:00 -0400
-   categories: [Notes]
-   reading_time: "4 min read"
-   ---
-   ```
+Because this is a static site, test cases shipped in `assets/js/app.js` are discoverable and should be treated as educational checks rather than secure competitive-programming tests.
 
-3. Write the post in Markdown and commit it to `main`.
+## Local preview
 
-GitHub Pages rebuilds the site after every commit.
+Serve the repository over HTTP; WebAssembly will not load reliably from a `file://` URL.
 
-## Customize
-
-- Site title and description: `_config.yml`
-- Home page introduction: `index.html`
-- Biography: `about.md`
-- RSS subscription guide: `rss.md`
-- Colors and typography: `assets/css/style.css`
-
-## Preview locally
-
-Install Ruby and Bundler, then run:
-
-```bash
-bundle install
-bundle exec jekyll serve
+```sh
+python3 -m http.server 8000
 ```
 
-Open <http://localhost:4000>.
+Then open <http://localhost:8000/>.
+
+## Credits and licensing
+
+The iogii interpreter is copyright 2024–2026 Darren Smith and redistributed under its BSD 3-Clause license. See `LICENSE.txt` and `THIRD_PARTY_NOTICES.md` for interpreter and runtime notices. This site is an independent practice interface and is not endorsed by the iogii author.

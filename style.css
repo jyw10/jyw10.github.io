@@ -1,0 +1,136 @@
+body {
+	max-width: 900px;
+	margin: 0 auto;
+	margin-bottom: 40px;
+   color: #C8D1D9;
+	background-color: #0E1016;
+   line-height: 1.5;
+	font-family: Verdana;
+}
+
+a {
+   color: #4E93E2;
+	text-decoration: none;
+}
+
+@media print {
+   .noprint {
+      display:none;
+   }
+   body {
+      color: black;
+      background-color: white;
+      line-height: 1.25;
+      font-size: 12px;
+   }
+   a {
+      color: black;
+   }
+}
+
+#content {
+   padding-left: 20px;
+   padding-right: 20px;
+}
+
+a:hover {
+   text-decoration: underline;
+}
+
+/*inline code */
+code {
+	font-family: SFMono-Regular,Consolas,"Liberation Mono",Menlo,monospace;
+}
+
+.inline {
+   margin: 0;
+	border:none;
+   padding: 0.2em 0.4em;
+   background-color: #343940;
+   border-radius: 4px;
+}
+
+/* program blocks */
+pre code {
+	display: block;
+	background-color: #171A22;
+	padding: 10px;
+   line-height: 1.2;
+	white-space: pre-wrap;
+}
+
+.code-container {
+  position: relative;
+   line-height: 1.2;
+}
+
+.run-code-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;  /* Adjust position as needed */
+  text-decoration: none;  /* Remove underline */
+}
+
+.run-code-icon:hover {
+  text-decoration: none;  /* Remove underline */
+}
+
+table.quickref {
+   border-collapse: collapse;
+   font-size: 12px;
+}
+
+table.quickref td {
+   border-style: solid;
+   border-width: 1px;
+   padding: 0.1px 8px;
+}
+
+.center {
+   text-align: center;
+}
+
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+
+textarea {
+   color: #C8D1D9;
+	background-color: #171A22;
+}
+
+textarea:focus {
+   outline: none;
+}
+
+textarea[readonly] {
+   border: none;
+}
+
+.remove-btn {
+   position: absolute;
+   top: 6px;
+   right: 6px;
+   background: none;
+   border: none;
+   font-size: 16px;
+   cursor: pointer;
+   color: #888;
+   line-height: 1;
+}
+
+.textarea-row {
+   position: relative;
+   margin-bottom: 6px;
+}
+
+textarea {
+   width: 100%;
+   min-height: 40px;
+   padding: 10px 28px 10px 10px; /* space for the X button */
+   resize: vertical;
+   box-sizing: border-box;
+}
