@@ -1,0 +1,29 @@
+---
+layout: default
+---
+<article class="post shell prose-shell">
+  <header class="post-header">
+    <a class="back-link" href="{{ '/' | relative_url }}">← All writing</a>
+    <p class="post-kicker">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      {% if page.reading_time %}<span aria-hidden="true">·</span> {{ page.reading_time }}{% endif %}
+    </p>
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p class="post-deck">{{ page.description }}</p>{% endif %}
+    {% if page.categories.size > 0 %}
+      <ul class="tag-list" aria-label="Topics">
+        {% for category in page.categories %}<li>{{ category }}</li>{% endfor %}
+      </ul>
+    {% endif %}
+  </header>
+
+  <div class="prose">
+    {{ content }}
+  </div>
+
+  <footer class="post-footer">
+    <p>Thanks for reading.</p>
+    <a href="{{ '/archive/' | relative_url }}">Explore the archive →</a>
+  </footer>
+</article>
+

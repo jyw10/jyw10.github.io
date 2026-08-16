@@ -1,0 +1,58 @@
+---
+layout: default
+title: Home
+description: "Notes on building, learning, and the ideas in between."
+---
+<section class="hero shell">
+  <div class="hero-copy">
+    <p class="eyebrow">Independent notes · Est. 2026</p>
+    <h1>Ideas become clearer when you <em>write them down.</em></h1>
+    <p class="hero-intro">A small corner of the internet for field notes on building, learning, and whatever proves worth remembering.</p>
+    <div class="hero-actions">
+      <a class="button button-primary" href="#latest">Read the latest</a>
+      <a class="button button-quiet" href="https://github.com/jyw10">GitHub ↗</a>
+    </div>
+  </div>
+  <div class="hero-card" aria-label="Site note">
+    <span class="card-index">01</span>
+    <blockquote>Writing is where fuzzy ideas begin to acquire edges.</blockquote>
+    <p>Welcome. Stay curious.</p>
+  </div>
+</section>
+
+<section class="latest shell" id="latest">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Recently published</p>
+      <h2>Latest writing</h2>
+    </div>
+    <a href="{{ '/archive/' | relative_url }}">View the archive →</a>
+  </div>
+
+  <div class="post-list">
+    {% for post in site.posts limit:6 %}
+      <article class="post-card">
+        <div class="post-card-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+          {% if post.categories.first %}<span>{{ post.categories.first }}</span>{% endif %}
+        </div>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p>{{ post.description | default: post.excerpt | strip_html | truncate: 180 }}</p>
+        <a class="read-link" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title }}">Read essay <span>→</span></a>
+      </article>
+    {% else %}
+      <div class="empty-state">
+        <p>Your first post is waiting to be written.</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="newsletter shell" aria-labelledby="follow-title">
+  <div>
+    <p class="eyebrow">Follow along</p>
+    <h2 id="follow-title">New notes, without the noise.</h2>
+  </div>
+  <p>Subscribe with your favorite feed reader and every new post will arrive automatically.</p>
+  <a class="button button-inverse" href="{{ '/feed.xml' | relative_url }}">Open RSS feed</a>
+</section>
